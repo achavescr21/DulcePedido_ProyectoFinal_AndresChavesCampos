@@ -31,12 +31,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     _model = createModel(context, () => LoginPageModel());
 
-    _model.txtCorreoLoginTextController ??=
-        TextEditingController(text: 'Ingresa tu correo...');
+    _model.txtCorreoLoginTextController ??= TextEditingController();
     _model.txtCorreoLoginFocusNode ??= FocusNode();
 
-    _model.txtClaveLoginTextController ??=
-        TextEditingController(text: 'Contraseña');
+    _model.txtClaveLoginTextController ??= TextEditingController();
     _model.txtClaveLoginFocusNode ??= FocusNode();
   }
 
@@ -174,7 +172,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                          hintText: 'TextField',
+                          hintText: 'Ingresa tu correo...',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.inter(
@@ -277,7 +275,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                          hintText: 'TextField',
+                          hintText: 'Contraseña',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.inter(
@@ -387,7 +385,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         }
 
                         context.goNamedAuth(
-                            AccesoPageWidget.routeName, context.mounted);
+                            CatalogoPageWidget.routeName, context.mounted);
                       },
                       text: 'Ingresar',
                       options: FFButtonOptions(

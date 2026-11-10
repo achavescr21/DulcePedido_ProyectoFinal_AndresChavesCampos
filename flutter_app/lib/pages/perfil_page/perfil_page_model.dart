@@ -20,11 +20,36 @@ class PerfilPageModel extends FlutterFlowModel<PerfilPageWidget> {
   TextEditingController? txtNombrePerfilTextController;
   String? Function(BuildContext, String?)?
       txtNombrePerfilTextControllerValidator;
+  String? _txtNombrePerfilTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Se requiere el nombre del perfil.';
+    }
+
+    if (val.length > 100) {
+      return 'Maximum 100 characters allowed, currently ${val.length}.';
+    }
+
+    return null;
+  }
+
   // State field(s) for txtTelefonoPerfil widget.
   FocusNode? txtTelefonoPerfilFocusNode;
   TextEditingController? txtTelefonoPerfilTextController;
   String? Function(BuildContext, String?)?
       txtTelefonoPerfilTextControllerValidator;
+  String? _txtTelefonoPerfilTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Se necesita el número de teléfono';
+    }
+
+    if (!RegExp('^[0-9]{4}-?[0-9]{4}\$').hasMatch(val)) {
+      return 'Invalid text';
+    }
+    return null;
+  }
+
   // State field(s) for Correoelectronico widget.
   FocusNode? correoelectronicoFocusNode;
   TextEditingController? correoelectronicoTextController;
@@ -32,7 +57,12 @@ class PerfilPageModel extends FlutterFlowModel<PerfilPageWidget> {
       correoelectronicoTextControllerValidator;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    txtNombrePerfilTextControllerValidator =
+        _txtNombrePerfilTextControllerValidator;
+    txtTelefonoPerfilTextControllerValidator =
+        _txtTelefonoPerfilTextControllerValidator;
+  }
 
   @override
   void dispose() {

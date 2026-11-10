@@ -35,6 +35,11 @@ dependencies:
   cloud_firestore_platform_interface: 8.0.7
   cloud_firestore_web: 5.7.3
   collection: 1.19.1
+  dropdown_button2: 
+    git:
+      url: https://github.com/FlutterFlow/dropdown_button2.git
+      ref: 514178337dfbea442f617daed39c704b57593fc9
+      path: packages/dropdown_button2
   firebase_auth: 6.7.1
   firebase_auth_platform_interface: 9.1.0
   firebase_auth_web: 6.3.0
@@ -44,6 +49,7 @@ dependencies:
   firebase_performance: 0.11.7
   firebase_performance_platform_interface: 0.2.0+7
   firebase_performance_web: 0.1.8+13
+  floating_bottom_navigation_bar: 1.5.2
   flutter_animate: 4.5.0
   flutter_cache_manager: 3.4.1
   font_awesome_flutter: 11.0.0
@@ -80,6 +86,7 @@ dependencies:
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
+  text_search: 1.0.1
   timeago: 3.7.1
   url_launcher: 6.3.1
   url_launcher_android: 6.3.16

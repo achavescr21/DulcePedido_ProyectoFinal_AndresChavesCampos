@@ -83,14 +83,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? AccesoPageWidget() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? AccesoPageWidget()
-              : LoginPageWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
         ),
         FFRoute(
           name: LoginPageWidget.routeName,
@@ -103,40 +102,57 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => RegistroPageWidget(),
         ),
         FFRoute(
-          name: AccesoPageWidget.routeName,
-          path: AccesoPageWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => AccesoPageWidget(),
-        ),
+            name: AccesoPageWidget.routeName,
+            path: AccesoPageWidget.routePath,
+            requireAuth: true,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: AccesoPageWidget(),
+                )),
         FFRoute(
           name: CatalogoPageWidget.routeName,
           path: CatalogoPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => CatalogoPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'CatalogoPage')
+              : CatalogoPageWidget(),
         ),
         FFRoute(
           name: DetalleProductoPageWidget.routeName,
           path: DetalleProductoPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => DetalleProductoPageWidget(),
+          builder: (context, params) => DetalleProductoPageWidget(
+            productoRef: params.getParam(
+              'productoRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['productos'],
+            ),
+          ),
         ),
         FFRoute(
           name: CarritoPageWidget.routeName,
           path: CarritoPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => CarritoPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'CarritoPage')
+              : CarritoPageWidget(),
         ),
         FFRoute(
           name: MisPedidosPageWidget.routeName,
           path: MisPedidosPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => MisPedidosPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'MisPedidosPage')
+              : MisPedidosPageWidget(),
         ),
         FFRoute(
           name: PerfilPageWidget.routeName,
           path: PerfilPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => PerfilPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'PerfilPage')
+              : PerfilPageWidget(),
         ),
         FFRoute(
           name: AdministracionPageWidget.routeName,
@@ -154,7 +170,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: EditarProductoPageWidget.routeName,
           path: EditarProductoPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => EditarProductoPageWidget(),
+          builder: (context, params) => EditarProductoPageWidget(
+            productoRef: params.getParam(
+              'productoRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['productos'],
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

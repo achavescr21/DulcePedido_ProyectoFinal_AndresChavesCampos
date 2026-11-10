@@ -32,12 +32,10 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
     super.initState();
     _model = createModel(context, () => RegistroPageModel());
 
-    _model.txtNombreRegistroTextController ??=
-        TextEditingController(text: 'Nombre completo');
+    _model.txtNombreRegistroTextController ??= TextEditingController();
     _model.txtNombreRegistroFocusNode ??= FocusNode();
 
-    _model.txtCorreoRegistroTextController ??=
-        TextEditingController(text: 'Correo electrónico');
+    _model.txtCorreoRegistroTextController ??= TextEditingController();
     _model.txtCorreoRegistroFocusNode ??= FocusNode();
 
     _model.txtTelefonoRegistroTextController ??=
@@ -142,7 +140,7 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                              hintText: 'TextField',
+                              hintText: 'Nombre completo',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -251,7 +249,7 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                              hintText: 'TextField',
+                              hintText: 'Correo electrónico',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -343,7 +341,6 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              labelText: 'Teléfono',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -363,7 +360,7 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                              hintText: 'TextField',
+                              hintText: 'Teléfono',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -453,7 +450,6 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
                             obscureText: !_model.txtClaveRegistroVisibility,
                             decoration: InputDecoration(
                               isDense: true,
-                              labelText: 'Contraseña',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -473,7 +469,7 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                              hintText: 'TextField',
+                              hintText: 'Contraseña',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -598,7 +594,7 @@ class _RegistroPageWidgetState extends State<RegistroPageWidget> {
                                 ));
 
                             context.goNamedAuth(
-                                AccesoPageWidget.routeName, context.mounted);
+                                CatalogoPageWidget.routeName, context.mounted);
                           },
                           text: 'Crear Cuenta',
                           options: FFButtonOptions(
